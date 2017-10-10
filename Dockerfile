@@ -3,9 +3,14 @@
 #
 
 FROM    debian:jessie
-MAINTAINER  Yvonnick Esnault <yvonnick@esnau.lt>
+MAINTAINER  joffrey <djoffrey@github.com>
 
 ENV DEBIAN_FRONTEND=noninteractive DEBCONF_NONINTERACTIVE_SEEN=true
+
+#COPY sources.list /etc/apt/sources.list
+
+RUN mkdir -p /var/cache/apt/archives/partial
+RUN touch /var/cache/apt/archives/lock
 
 # TODO: review this dependency list
 RUN     apt-get clean && apt-get update && apt-get install -y \
@@ -36,7 +41,8 @@ RUN     apt-get clean && apt-get update && apt-get install -y \
 # repeatable builds use the latest SHA
 ADD     download.sh /opt/download.sh
 
-ARG PHABRICATOR_COMMIT=79f2e81f38
+#ARG PHABRICATOR_COMMIT=79f2e81f38
+ARG PHABRICATOR_COMMIT=5897294fa97e17002fd8d847abd97a81cc420971
 ARG ARCANIST_COMMIT=c304c4e045
 ARG LIBPHUTIL_COMMIT=55f554b618
 
