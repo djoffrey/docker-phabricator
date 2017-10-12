@@ -1,0 +1,10 @@
+#
+# Docker image for running https://github.com/phacility/phabricator
+#
+
+FROM    yesnault/docker-phabricator:5a98508207e4
+MAINTAINER  joffrey <djoffrey@github.com>
+
+ADD zh_plugin/PhabricatorCNChineseTranslation.php /opt/phabricator/src/extensions/PhabricatorCNChineseTranslation.php
+ADD zh_plugin/PhutilCNChineseLocale.php /opt/phabricator/src/extensions/PhutilCNChineseLocale.php
+
